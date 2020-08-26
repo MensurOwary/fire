@@ -1,3 +1,3 @@
-# Fire
+# fire
 
-a tiny file renaming utility
+a tiny **fi**le **re**naming utility
