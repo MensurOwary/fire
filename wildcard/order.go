@@ -78,10 +78,10 @@ func MakeOrdering(arg arg.Arguments) OrderCounter {
 	if wildCardArg == "" {
 		return OrderCounter{numeric: 1}
 	} else {
-		if val, err := strconv.Atoi(wildCardArg); err != nil {
+		val, err := strconv.Atoi(wildCardArg)
+		if err != nil {
 			return OrderCounter{text: wildCardArg}
-		} else {
-			return OrderCounter{numeric: val}
 		}
+		return OrderCounter{numeric: val}
 	}
 }
