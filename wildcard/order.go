@@ -36,11 +36,10 @@ func (w *OrderCounter) advance() string {
 		v := w.numeric
 		w.numeric = v + 1
 		return strconv.Itoa(v)
-	} else {
-		v := next(w.text)
-		w.text = v
-		return v
 	}
+	v := next(w.text)
+	w.text = v
+	return v
 }
 
 func next(text string) string {
