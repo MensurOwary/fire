@@ -8,11 +8,13 @@ import (
 	s "strings"
 )
 
+// Arguments represents the application arguments
 type Arguments struct {
 	From, To                string
 	IncludeDir, IncludeFile bool
 }
 
+// Args function constructs the input arguments from cli arguments
 func Args() Arguments {
 	osArgs := os.Args
 

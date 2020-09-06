@@ -7,11 +7,13 @@ import (
 	"strconv"
 )
 
+// OrderCounter keeps track of the next value for the order wildcard
 type OrderCounter struct {
 	numeric int
 	text    string
 }
 
+// ReplaceIfNeeded replaces the wildcard with the correct next value
 func (w *OrderCounter) ReplaceIfNeeded(input string) string {
 	if w.contains(input) {
 		return w.replace(input)
@@ -66,6 +68,7 @@ func next(text string) string {
 // #{o:ascii} => #{o:a} will start counting from a until z...z
 var orderRegex = r.MustCompile("#{o(:(.+))?}")
 
+// MakeOrdering initializes the order counter
 func MakeOrdering(arg arg.Arguments) OrderCounter {
 	subMatches := orderRegex.FindStringSubmatch(arg.To)
 	wildCardArg := ""
