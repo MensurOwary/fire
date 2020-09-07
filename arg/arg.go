@@ -12,6 +12,7 @@ import (
 type Arguments struct {
 	From, To                string
 	IncludeDir, IncludeFile bool
+	Async                   bool
 }
 
 // Args function constructs the input arguments from cli arguments
@@ -28,7 +29,7 @@ func Args() Arguments {
 		return defaultMode(osArgs)
 	}
 
-	var includeDir, includeFile bool
+	var includeDir, includeFile, async bool
 
 	params := osArgs[1]
 	if s.Index(params, "-") != 0 {
@@ -43,6 +44,8 @@ func Args() Arguments {
 			break
 		case "d":
 			includeDir = true
+		case "a":
+			async = true
 		}
 	}
 	return Arguments{
@@ -50,12 +53,13 @@ func Args() Arguments {
 		osArgs[3],
 		includeDir,
 		includeFile,
+		async,
 	}
 }
 
 func defaultMode(osArgs []string) Arguments {
 	return Arguments{
 		osArgs[1], osArgs[2],
-		false, true,
+		false, true, false,
 	}
 }
